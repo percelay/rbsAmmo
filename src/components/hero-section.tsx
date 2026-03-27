@@ -18,7 +18,7 @@ export function HeroSection({ brandName, headline, subheadline, navigation }: He
     <section className="relative isolate overflow-hidden border-b border-border">
       <div className="absolute inset-0">
         <Image
-          src="/range.jpg"
+          src="/ammohero.jpg"
           alt={headline}
           fill
           priority
@@ -82,4 +82,3 @@ export function HeroSection({ brandName, headline, subheadline, navigation }: He
     </section>
   );
 }
-

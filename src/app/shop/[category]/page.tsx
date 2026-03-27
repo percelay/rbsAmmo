@@ -70,7 +70,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <section className="relative isolate overflow-hidden border-b border-border">
           <div className="absolute inset-0">
             <Image
-              src="/american%20flag.jpg"
+              src="/americanflag22.webp"
               alt={categoryData.label}
               fill
               priority
@@ -107,4 +107,3 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     </>
   );
 }
-

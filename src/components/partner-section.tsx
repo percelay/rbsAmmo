@@ -46,7 +46,7 @@ export function PartnerSection({
 
           <div className="relative min-h-[280px] border-t border-border lg:min-h-full lg:border-l lg:border-t-0">
             <Image
-              src="/american%20flag.jpg"
+              src="/americanflag22.webp"
               alt={aboutHeadline}
               fill
               sizes="420px"
@@ -77,4 +77,3 @@ export function PartnerSection({
     </section>
   );
 }
-
