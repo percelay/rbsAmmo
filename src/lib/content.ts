@@ -32,8 +32,6 @@ export type SiteContent = {
     tertiaryCta: string;
   };
   partner: {
-    aboutHeadline: string;
-    description: string;
     links: PartnerLink[];
   };
   productsCategory: string;
@@ -105,7 +103,7 @@ function slugify(value: string) {
 
 function parseProducts(productsSegment: string) {
   const matches = productsSegment.matchAll(
-    /Title:\s*(.*?)\s*Price:\s*(.*?)\s*Status:\s*(.*?)\s*Image:\s*(\[[\s\S]*?\])(?=Title:|$)/g,
+    /Title:\s*(.*?)\s*Price:\s*(.*?)\s*Status:\s*(.*?)\s*Image:\s*(\[[\s\S]*?\])(?=\s*Title:|$)/g,
   );
 
   return Array.from(matches, ([, title, price, status, image]) => ({
@@ -118,7 +116,7 @@ function parseProducts(productsSegment: string) {
 
 function parseRelatedProducts(relatedSegment: string) {
   const matches = relatedSegment.matchAll(
-    /Title:\s*(.*?)\s*Tags:\s*(.*?)\s*Price:\s*(.*?)\s*Action:\s*(.*?)(?=Title:|$)/g,
+    /Title:\s*(.*?)\s*Tags:\s*(.*?)\s*Price:\s*(.*?)\s*Action:\s*(.*?)(?=\s*Title:|$)/g,
   );
 
   return Array.from(matches, ([, title, tags, price, action]) => ({
@@ -141,8 +139,8 @@ export function getSiteContent() {
   const detailStart = raw.indexOf("Title:", detailIndex);
   const relatedStart = raw.indexOf("Title:", relatedIndex);
   const aboutHeadline = capture(raw, "AboutHeadline:", "PartnerDescription:");
-  const partnerDescription = capture(raw, "PartnerDescription:", "CTA:");
-  const primaryPartnerCta = parseCta(capture(raw, "CTA:", "RangeHeadline:"), "Partner CTA");
+  const partnerDescription = capture(raw, "PartnerDescription:", "Partner CTA:");
+  const primaryPartnerCta = parseCta(capture(raw, "Partner CTA:", "RangeHeadline:"), "Partner CTA");
   const rangeHeadline = capture(raw, "RangeHeadline:", "RangeDescription:");
   const rangeDescription = capture(raw, "RangeDescription:", "Range CTA:");
   const rangeCta = parseCta(capture(raw, "Range CTA:", "ProductsCategory:"), "Range CTA");
@@ -160,8 +158,6 @@ export function getSiteContent() {
       tertiaryCta: capture(raw, "Tertiary CTA:", "AboutHeadline:"),
     },
     partner: {
-      aboutHeadline,
-      description: partnerDescription,
       links: [
         {
           title: aboutHeadline,

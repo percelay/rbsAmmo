@@ -6,7 +6,7 @@ Secondary CTA: Rifle Ammo
 Tertiary CTA: Ammo Components
 AboutHeadline: North Sound Firearms
 PartnerDescription: Premium selection of firearms and accessories from a trusted local partner.
-CTA: Visit North Sound (https://northsoundfirearms.com/)
+Partner CTA: Visit Site (https://northsoundfirearms.com/)
 RangeHeadline: Skagit Shooting Range
 RangeDescription: Check range details and plan your next visit.
 Range CTA: Visit Range (https://skagitshootingrange.com/)

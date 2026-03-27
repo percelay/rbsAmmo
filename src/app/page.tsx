@@ -32,8 +32,6 @@ export default function HomePage() {
         />
 
         <PartnerSection
-          aboutHeadline={siteContent.partner.aboutHeadline}
-          description={siteContent.partner.description}
           links={siteContent.partner.links}
         />
 
