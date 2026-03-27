@@ -56,10 +56,13 @@ export function HeroSection({ brandName, headline, subheadline, navigation }: He
                   className="group flex h-full flex-col justify-between rounded-3xl border border-border bg-surface/85 p-5 shadow-panel backdrop-blur transition-colors hover:border-primary/60 hover:bg-surface-strong"
                 >
                   <Icon className="h-5 w-5 text-primary" />
-                  <span className="mt-10 flex items-center justify-between gap-3 font-display text-sm uppercase tracking-[0.18em] text-text">
-                    {item.label}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  <div className="mt-8 space-y-2">
+                    <p className="font-display text-[10px] uppercase tracking-[0.3em] text-muted">Browse</p>
+                    <span className="flex items-center justify-between gap-3 font-display text-base uppercase tracking-[0.14em] text-text sm:text-lg">
+                      {item.buttonLabel}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </Link>
               );
             })}

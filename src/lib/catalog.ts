@@ -5,6 +5,7 @@ export type CategorySlug = "pistol-ammo" | "rifle-ammo" | "ammo-components";
 export type CategoryLink = {
   slug: CategorySlug;
   label: string;
+  buttonLabel: string;
   href: string;
 };
 
@@ -58,23 +59,37 @@ function toRelatedCard(product: RelatedProduct): ProductCardItem {
   };
 }
 
+function normalizeCategoryLabel(value: string) {
+  return value.replace(/^Shop\s+/i, "").trim();
+}
+
+function toButtonLabel(value: string) {
+  return value === "Ammo Components" ? "Components" : value;
+}
+
 export function getCategoryLinks(): CategoryLink[] {
   const { hero } = getSiteContent();
+  const primaryLabel = normalizeCategoryLabel(hero.primaryCta);
+  const secondaryLabel = normalizeCategoryLabel(hero.secondaryCta);
+  const tertiaryLabel = normalizeCategoryLabel(hero.tertiaryCta);
 
   return [
     {
       slug: "pistol-ammo",
-      label: hero.primaryCta,
+      label: primaryLabel,
+      buttonLabel: toButtonLabel(primaryLabel),
       href: "/shop/pistol-ammo",
     },
     {
       slug: "rifle-ammo",
-      label: hero.secondaryCta,
+      label: secondaryLabel,
+      buttonLabel: toButtonLabel(secondaryLabel),
       href: "/shop/rifle-ammo",
     },
     {
       slug: "ammo-components",
-      label: hero.tertiaryCta,
+      label: tertiaryLabel,
+      buttonLabel: toButtonLabel(tertiaryLabel),
       href: "/shop/ammo-components",
     },
   ];
@@ -115,4 +130,3 @@ export function getCategoryData(slug: CategorySlug): CategoryData {
 export function getDetailProductHref() {
   return `/products/${getProductSlug(getSiteContent().detailProduct.title)}`;
 }
-

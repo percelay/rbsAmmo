@@ -1,2 +1,87 @@
-RBS Ammo Hero Headline: RBS Ammo Subheadline: Premium Remanufactured and Factory Ammunition Primary CTA: Shop Pistol Ammo Secondary CTA: Shop Rifle Ammo 
-Tertiary CTA: Shop Ammo ComponentsAboutHeadline: North Sound Firearms PartnerDescription: Check out North Sound Firearms for a premium selection of firearms and accessories.CTA: Learn More (https://northsoundfirearms.com/)ProductsCategory: New Products / Best Sellers / On SaleTitle: 9mm 124grPrice: $14.99 – $74.95Status: AvailableImage: [Placeholder - Interactive Clickable to Product Page]Title: Federal Premium Law Enforcement 12 Gauge – 438gr Hydra-Shok® Tactical Rifled SlugPrice: $5.99Status: AvailableImage: [Placeholder]Title: 20 Gauge Federal 2-3/4″ 7/8oz. 7 1/2 ShotPrice: $12.99Status: SOLDImage: [Placeholder]Title: 12 Gauge Federal 2-3/4″ 1oz. 8 shotPrice: $12.99Status: AvailableImage: [Placeholder]Title: PMC .223Price: $10.99Status: AvailableImage: [Placeholder]Title: PMC X-Tac 5.56Price: $13.99Status: SOLDImage: [Placeholder]Title: SPEER LAWMAN 45 AUTO, 230 GRAIN, TOTAL METAL JACKETPrice: $17.99Status: AvailableImage: [Placeholder]Title: RBS 9-115Price: $14.50 – $71.25Status: AvailableImage: [Placeholder]Title: 9-147 SUBSONICPrice: $16.99 – $84.99Status: AvailableImage: [Placeholder]Title: 9-165 SUBSONICPrice: $18.99 – $94.95Status: AvailableImage: [Placeholder]Title: RBS 357 MagPrice: $22.99Status: AvailableImage: [Placeholder]Title: RBS 40 S&WPrice: $17.99 – $89.00Status: AvailableImage: [Placeholder]Product Detail PageTitle: 9mm 124grCategory: AmmoNotice: Read the Purchasing Requirements FirstPrice range: $14.99 through $74.95Options: Quantity (50 ct., 250 ct.)SKU: [Blank]Actions: Add to cart, Go to cartDescription: RBS 9mm 124 grain Total Metal Jacket, Remanufactured. Proudly manufactured in the USA, our commitment to excellence shines through every round. We understand that quality matters, which is why we exclusively utilize once-fired, brass casings in the production of our ammunition. This ensures reliability and performance you can count on. With meticulous hand-inspection, we uphold the highest standards to deliver a remanufactured product that surpasses expectations. You can choose between in-store pick-up at Skagit Shooting Range or have it shipped. Please note that RBS ammunition products may have restrictions in certain states, and customers must be 18 years or older for rifle ammunition and 21 years or older for pistol ammunition. Because we care, you can be sure that you are shooting the best ammunition available.Additional Information:Weight: 1.40 lbsDimensions: 4.125 × 1.75 × 2.5 inQuantity Options: 50 ct., 250 ct.Related ProductsTitle: CCI Mini Mag 22 LRTags: Ammunition, Hot Deals, In-store Pick up, Pistol Ammo, Rifle Ammo, UncategorizedPrice: $10.99Action: Add to cartTitle: .223 BRASSTags: Brass, In-store Pick up, ReloadingPrice: $5.99Action: Add to cartTitle: RBS 357 MagTags: Ammunition, Best Sellers, In-store Pick up, Pistol AmmoPrice: $22.99Action: Add to cart
+RBS Ammo
+Hero Headline: RBS Ammo
+Subheadline: Premium Remanufactured and Factory Ammunition
+Primary CTA: Pistol Ammo
+Secondary CTA: Rifle Ammo
+Tertiary CTA: Ammo Components
+AboutHeadline: North Sound Firearms
+PartnerDescription: Premium selection of firearms and accessories from a trusted local partner.
+CTA: Visit North Sound (https://northsoundfirearms.com/)
+RangeHeadline: Skagit Shooting Range
+RangeDescription: Check range details and plan your next visit.
+Range CTA: Visit Range (https://skagitshootingrange.com/)
+ProductsCategory: New Products / Best Sellers / On Sale
+Title: 9mm 124gr
+Price: $14.99 – $74.95
+Status: Available
+Image: [Placeholder - Interactive Clickable to Product Page]
+Title: Federal Premium Law Enforcement 12 Gauge – 438gr Hydra-Shok® Tactical Rifled Slug
+Price: $5.99
+Status: Available
+Image: [Placeholder]
+Title: 20 Gauge Federal 2-3/4″ 7/8oz. 7 1/2 Shot
+Price: $12.99
+Status: SOLD
+Image: [Placeholder]
+Title: 12 Gauge Federal 2-3/4″ 1oz. 8 shot
+Price: $12.99
+Status: Available
+Image: [Placeholder]
+Title: PMC .223
+Price: $10.99
+Status: Available
+Image: [Placeholder]
+Title: PMC X-Tac 5.56
+Price: $13.99
+Status: SOLD
+Image: [Placeholder]
+Title: SPEER LAWMAN 45 AUTO, 230 GRAIN, TOTAL METAL JACKET
+Price: $17.99
+Status: Available
+Image: [Placeholder]
+Title: RBS 9-115
+Price: $14.50 – $71.25
+Status: Available
+Image: [Placeholder]
+Title: 9-147 SUBSONIC
+Price: $16.99 – $84.99
+Status: Available
+Image: [Placeholder]
+Title: 9-165 SUBSONIC
+Price: $18.99 – $94.95
+Status: Available
+Image: [Placeholder]
+Title: RBS 357 Mag
+Price: $22.99
+Status: Available
+Image: [Placeholder]
+Title: RBS 40 S&W
+Price: $17.99 – $89.00
+Status: Available
+Image: [Placeholder]
+Product Detail Page
+Title: 9mm 124gr
+Category: Ammo
+Notice: Read the Purchasing Requirements First
+Price range: $14.99 through $74.95
+Options: Quantity (50 ct., 250 ct.)
+SKU: [Blank]
+Actions: Add to cart, Go to cart
+Description: RBS 9mm 124 grain Total Metal Jacket, Remanufactured. Proudly manufactured in the USA, our commitment to excellence shines through every round. We understand that quality matters, which is why we exclusively utilize once-fired, brass casings in the production of our ammunition. This ensures reliability and performance you can count on. With meticulous hand-inspection, we uphold the highest standards to deliver a remanufactured product that surpasses expectations. You can choose between in-store pick-up at Skagit Shooting Range or have it shipped. Please note that RBS ammunition products may have restrictions in certain states, and customers must be 18 years or older for rifle ammunition and 21 years or older for pistol ammunition. Because we care, you can be sure that you are shooting the best ammunition available.
+Additional Information:
+Weight: 1.40 lbs
+Dimensions: 4.125 × 1.75 × 2.5 in
+Quantity Options: 50 ct., 250 ct.
+Related Products
+Title: CCI Mini Mag 22 LR
+Tags: Ammunition, Hot Deals, In-store Pick up, Pistol Ammo, Rifle Ammo, Uncategorized
+Price: $10.99
+Action: Add to cart
+Title: .223 BRASS
+Tags: Brass, In-store Pick up, Reloading
+Price: $5.99
+Action: Add to cart
+Title: RBS 357 Mag
+Tags: Ammunition, Best Sellers, In-store Pick up, Pistol Ammo
+Price: $22.99
+Action: Add to cart

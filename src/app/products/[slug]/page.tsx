@@ -170,14 +170,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
         brandName={siteContent.brandName}
         subheadline={siteContent.hero.subheadline}
         navigation={navigation}
-        partnerHeadline={siteContent.partner.aboutHeadline}
-        partnerDescription={siteContent.partner.description}
-        partnerHref={siteContent.partner.ctaHref}
-        partnerLabel={siteContent.partner.ctaLabel}
+        externalLinks={siteContent.partner.links}
         cartHref={cartHref}
         cartLabel={cartLabel}
       />
     </>
   );
 }
-

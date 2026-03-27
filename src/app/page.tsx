@@ -34,8 +34,7 @@ export default function HomePage() {
         <PartnerSection
           aboutHeadline={siteContent.partner.aboutHeadline}
           description={siteContent.partner.description}
-          ctaLabel={siteContent.partner.ctaLabel}
-          ctaHref={siteContent.partner.ctaHref}
+          links={siteContent.partner.links}
         />
 
         <ProductGrid title={siteContent.productsCategory} products={getHomeProducts()} eyebrow={siteContent.brandName} />
@@ -45,14 +44,10 @@ export default function HomePage() {
         brandName={siteContent.brandName}
         subheadline={siteContent.hero.subheadline}
         navigation={navigation}
-        partnerHeadline={siteContent.partner.aboutHeadline}
-        partnerDescription={siteContent.partner.description}
-        partnerHref={siteContent.partner.ctaHref}
-        partnerLabel={siteContent.partner.ctaLabel}
+        externalLinks={siteContent.partner.links}
         cartHref={cartHref}
         cartLabel={cartLabel}
       />
     </>
   );
 }
-

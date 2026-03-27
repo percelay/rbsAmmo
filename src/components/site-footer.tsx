@@ -2,27 +2,30 @@ import Image from "next/image";
 import Link from "next/link";
 
 import type { CategoryLink } from "@/lib/catalog";
+import type { PartnerLink } from "@/lib/content";
 
 type SiteFooterProps = {
   brandName: string;
   subheadline: string;
   navigation: CategoryLink[];
-  partnerHeadline: string;
-  partnerDescription: string;
-  partnerHref: string;
-  partnerLabel: string;
+  externalLinks: PartnerLink[];
   cartHref: string;
   cartLabel: string;
 };
+
+function getDomain(href: string) {
+  try {
+    return new URL(href).hostname.replace(/^www\./, "");
+  } catch {
+    return href;
+  }
+}
 
 export function SiteFooter({
   brandName,
   subheadline,
   navigation,
-  partnerHeadline,
-  partnerDescription,
-  partnerHref,
-  partnerLabel,
+  externalLinks,
   cartHref,
   cartLabel,
 }: SiteFooterProps) {
@@ -54,34 +57,39 @@ export function SiteFooter({
                 href={item.href}
                 className="text-sm text-muted transition-colors hover:text-text"
               >
-                {item.label}
+                {item.buttonLabel}
               </Link>
             ))}
           </div>
         </div>
 
         <div className="space-y-4">
-          <p className="font-display text-xs uppercase tracking-[0.3em] text-primary">{partnerHeadline}</p>
-          <p className="text-sm leading-7 text-muted">{partnerDescription}</p>
-          <Link
-            href={partnerHref}
-            target="_blank"
-            rel="noreferrer"
-            className="block text-sm text-muted transition-colors hover:text-text"
-          >
-            {partnerHref}
-          </Link>
-          <Link
-            href={partnerHref}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full border border-border px-4 py-2 text-sm text-text transition-colors hover:border-primary/50 hover:bg-surface"
-          >
-            {partnerLabel}
-          </Link>
+          <p className="font-display text-xs uppercase tracking-[0.3em] text-primary">Local Partners</p>
+          <div className="space-y-4">
+            {externalLinks.map((link) => (
+              <div key={link.href} className="rounded-[1.5rem] border border-border bg-surface p-4">
+                <p className="font-display text-xs uppercase tracking-[0.24em] text-text">{link.title}</p>
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2 block text-sm text-muted transition-colors hover:text-text"
+                >
+                  {getDomain(link.href)}
+                </Link>
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center rounded-full border border-border px-4 py-2 text-sm text-text transition-colors hover:border-primary/50 hover:bg-background"
+                >
+                  {link.ctaLabel}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-

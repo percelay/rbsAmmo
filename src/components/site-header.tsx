@@ -32,9 +32,9 @@ export function SiteHeader({ brandName, navigation, cartHref, cartLabel }: SiteH
             <Link
               key={item.slug}
               href={item.href}
-              className="rounded-full border border-transparent px-4 py-2 text-sm text-muted transition-colors hover:border-border hover:bg-surface hover:text-text"
+              className="rounded-full border border-border/60 bg-surface/75 px-4 py-2 font-display text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:border-primary/50 hover:bg-surface hover:text-text"
             >
-              {item.label}
+              {item.buttonLabel}
             </Link>
           ))}
         </nav>
@@ -55,11 +55,10 @@ export function SiteHeader({ brandName, navigation, cartHref, cartLabel }: SiteH
             href={item.href}
             className="shrink-0 rounded-full border border-border bg-surface px-4 py-2 text-xs uppercase tracking-[0.22em] text-muted transition-colors hover:border-primary/50 hover:text-text"
           >
-            {item.label}
+            {item.buttonLabel}
           </Link>
         ))}
       </nav>
     </header>
   );
 }
-

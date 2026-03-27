@@ -15,6 +15,13 @@ export type RelatedProduct = {
   action: string;
 };
 
+export type PartnerLink = {
+  title: string;
+  description: string;
+  ctaLabel: string;
+  href: string;
+};
+
 export type SiteContent = {
   brandName: string;
   hero: {
@@ -27,8 +34,7 @@ export type SiteContent = {
   partner: {
     aboutHeadline: string;
     description: string;
-    ctaLabel: string;
-    ctaHref: string;
+    links: PartnerLink[];
   };
   productsCategory: string;
   products: MainProduct[];
@@ -73,6 +79,19 @@ function capture(segment: string, startLabel: string, endLabel?: string) {
   }
 
   return segment.slice(valueStart, valueEnd).trim();
+}
+
+function parseCta(value: string, label: string) {
+  const ctaMatch = value.match(/^(.*?)\s*\((https?:\/\/[^)]+)\)$/);
+
+  if (!ctaMatch) {
+    throw new Error(`${label} is not in the expected format.`);
+  }
+
+  return {
+    label: ctaMatch[1].trim(),
+    href: ctaMatch[2].trim(),
+  };
 }
 
 function slugify(value: string) {
@@ -121,13 +140,12 @@ export function getSiteContent() {
   const productListStart = raw.indexOf("Title:", raw.indexOf("ProductsCategory:"));
   const detailStart = raw.indexOf("Title:", detailIndex);
   const relatedStart = raw.indexOf("Title:", relatedIndex);
-
-  const ctaValue = capture(raw, "CTA:", "ProductsCategory:");
-  const ctaMatch = ctaValue.match(/^(.*?)\s*\((https?:\/\/[^)]+)\)$/);
-
-  if (!ctaMatch) {
-    throw new Error("Partner CTA is not in the expected format.");
-  }
+  const aboutHeadline = capture(raw, "AboutHeadline:", "PartnerDescription:");
+  const partnerDescription = capture(raw, "PartnerDescription:", "CTA:");
+  const primaryPartnerCta = parseCta(capture(raw, "CTA:", "RangeHeadline:"), "Partner CTA");
+  const rangeHeadline = capture(raw, "RangeHeadline:", "RangeDescription:");
+  const rangeDescription = capture(raw, "RangeDescription:", "Range CTA:");
+  const rangeCta = parseCta(capture(raw, "Range CTA:", "ProductsCategory:"), "Range CTA");
 
   const detailSegment = raw.slice(detailStart, relatedIndex).trim();
   const additionalSegment = capture(detailSegment, "Additional Information:");
@@ -142,10 +160,22 @@ export function getSiteContent() {
       tertiaryCta: capture(raw, "Tertiary CTA:", "AboutHeadline:"),
     },
     partner: {
-      aboutHeadline: capture(raw, "AboutHeadline:", "PartnerDescription:"),
-      description: capture(raw, "PartnerDescription:", "CTA:"),
-      ctaLabel: ctaMatch[1].trim(),
-      ctaHref: ctaMatch[2].trim(),
+      aboutHeadline,
+      description: partnerDescription,
+      links: [
+        {
+          title: aboutHeadline,
+          description: partnerDescription,
+          ctaLabel: primaryPartnerCta.label,
+          href: primaryPartnerCta.href,
+        },
+        {
+          title: rangeHeadline,
+          description: rangeDescription,
+          ctaLabel: rangeCta.label,
+          href: rangeCta.href,
+        },
+      ],
     },
     productsCategory: capture(raw, "ProductsCategory:", "Title:"),
     products: parseProducts(raw.slice(productListStart, detailIndex).trim()),
@@ -175,4 +205,3 @@ export function getSiteContent() {
 export function getProductSlug(title: string) {
   return slugify(title);
 }
-

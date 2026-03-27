@@ -97,10 +97,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         brandName={siteContent.brandName}
         subheadline={siteContent.hero.subheadline}
         navigation={navigation}
-        partnerHeadline={siteContent.partner.aboutHeadline}
-        partnerDescription={siteContent.partner.description}
-        partnerHref={siteContent.partner.ctaHref}
-        partnerLabel={siteContent.partner.ctaLabel}
+        externalLinks={siteContent.partner.links}
         cartHref={cartHref}
         cartLabel={cartLabel}
       />
