@@ -27,7 +27,7 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 
 (gen_random_uuid(), 'RBS 380 ACP', 'rbs-380-acp',
  'RBS .380 ACP 95 grain Total Metal Jacket, Remanufactured. Uses once-fired brass casings with meticulous hand-inspection. Available for pickup at Skagit Shooting Range or shipped.',
- '.380 ACP', 'RBS', 95, 50, 17.99, NULL, TRUE, 'Pistol'),
+ '.380 ACP', 'RBS', 95, 50, 17.99, '/products/newbb380.webp', TRUE, 'Pistol'),
 
 (gen_random_uuid(), 'RBS 38 Special 158gr TMJ', 'rbs-38-special-158gr-tmj',
  '38 Special 158 gr. Total Metal Jacket – 50 count box, Remanufactured. Uses once-fired brass casings with meticulous hand-inspection.',
@@ -47,7 +47,7 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 
 (gen_random_uuid(), 'RBS 45 ACP 230gr TMJ', 'rbs-45-acp',
  'RBS .45 ACP 230 grain Total Metal Jacket, Remanufactured. Uses once-fired brass casings with meticulous hand-inspection. Available for pickup at Skagit Shooting Range or shipped.',
- '.45 ACP', 'RBS', 230, 50, 19.99, NULL, TRUE, 'Pistol'),
+ '.45 ACP', 'RBS', 230, 50, 19.99, '/products/newbb45.webp', TRUE, 'Pistol'),
 
 (gen_random_uuid(), 'Speer Lawman 45 Auto 230gr TMJ', 'speer-lawman-45-auto-230gr-tmj',
  'SPEER Lawman .45 Auto, 230 grain TMJ, 50 high-performance cartridges. In-Store Pickup is all that is available at this time.',
@@ -81,11 +81,11 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 -- ── RELOADING — BULLETS ─────────────────────────────────────────────────────
 (gen_random_uuid(), '.380 100gr RNFP Bullets', '380-100gr-rnfp-bullets-500ct',
  '500 per box. .380 caliber 100 grain round nose flat point bullets for reloading. In-Store Pickup is all that is available at this time.',
- '.380', 'RBS', 100, 500, 44.50, NULL, TRUE, 'Reloading'),
+ '.380', 'RBS', 100, 500, 44.50, '/products/380-100RN.webp', TRUE, 'Reloading'),
 
 (gen_random_uuid(), '9mm 115gr Round Nose Bullets', '9mm-115gr-rn-bullets-500ct',
  '500 per box. 9mm 115 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
- '9mm', 'RBS', 115, 500, 46.50, '/products/9-115-RN.jpg', TRUE, 'Reloading'),
+ '9mm', 'RBS', 115, 500, 46.50, '/products/9-115-RN.webp', TRUE, 'Reloading'),
 
 (gen_random_uuid(), '9mm 124gr Round Nose Bullets', '9mm-124gr-rn-bullets-500ct',
  '500 per box. 9mm 124 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
@@ -93,7 +93,7 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 
 (gen_random_uuid(), '9mm 147gr Round Nose Bullets', '9mm-147gr-rn-bullets-500ct',
  '500 per box. 9mm 147 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
- '9mm', 'RBS', 147, 500, 49.32, '/products/newbb147.jpg', TRUE, 'Reloading'),
+ '9mm', 'RBS', 147, 500, 49.32, '/products/9mm_147gr_rn_plated_1.jpg', TRUE, 'Reloading'),
 
 (gen_random_uuid(), '9mm 165gr Round Nose Bullets', '9mm-165gr-rn-bullets-500ct',
  '500 per box. 9mm 165 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
@@ -105,7 +105,7 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 
 (gen_random_uuid(), '.40 180gr RNFP Bullets', '40-180gr-rnfp-bullets-500ct',
  '500 per box. .40 caliber 180 grain round nose flat point bullets for reloading. In-Store Pickup is all that is available at this time.',
- '.40', 'RBS', 180, 500, 64.99, NULL, TRUE, 'Reloading'),
+ '.40', 'RBS', 180, 500, 64.99, '/products/40-165-RNFP.webp', TRUE, 'Reloading'),
 
 (gen_random_uuid(), '.45 230gr Round Nose Bullets', '45-230gr-rn-bullets-500ct',
  '500 per box. .45 230 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
@@ -146,4 +146,4 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 
 (gen_random_uuid(), '45 ACP Small Hole Brass', '45-acp-small-hole-brass-100ct',
  '100 Count per. Fully processed .45 small hole brass. De-capped, reamed, full-length case sized and polished. READY TO LOAD! In-Store Pickup is all that is available at this time.',
- '.45 ACP', 'RBS', NULL, 100, 11.99, NULL, TRUE, 'Reloading');
+ '.45 ACP', 'RBS', NULL, 100, 11.99, '/products/45-sh-Small.webp', TRUE, 'Reloading');
