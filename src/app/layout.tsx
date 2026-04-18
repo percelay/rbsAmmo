@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Barlow, Oxanium } from "next/font/google";
 
-import { getSiteContent } from "@/lib/content";
+import { Providers } from "@/app/providers";
 import "@/styles/globals.css";
 
 const displayFont = Oxanium({
@@ -16,24 +16,17 @@ const bodyFont = Barlow({
   weight: ["400", "500", "600"],
 });
 
-const siteContent = getSiteContent();
-
 export const metadata: Metadata = {
-  title: siteContent.brandName,
-  description: siteContent.hero.subheadline,
+  title: "RBS Ammunition",
+  description: "High-Quality Ammunition Built in Skagit Valley, WA",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${displayFont.variable} ${bodyFont.variable} bg-background text-text antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
 }
-

@@ -1,69 +1,65 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
-import type { ProductCardItem } from "@/lib/catalog";
+import { AddToCartButton } from "@/components/add-to-cart-button";
+import type { Product } from "@/lib/products";
 
 type ProductCardProps = {
-  product: ProductCardItem;
+  product: Product;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const card = (
+  return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-panel transition-colors hover:border-primary/50 hover:bg-surface-strong">
-      <div className="relative aspect-[4/3] overflow-hidden border-b border-border">
-        {product.imageSrc ? (
-          <Image
-            src={product.imageSrc}
-            alt={product.title}
-            fill
-            sizes="(min-width: 1280px) 320px, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-          />
-        ) : (
-          <div className="flex h-full items-end bg-[linear-gradient(145deg,rgba(23,28,25,0.96),rgba(14,17,15,0.98))] p-5">
-            <div className="rounded-2xl border border-dashed border-border bg-background/80 px-4 py-3 font-display text-xs uppercase tracking-[0.22em] text-muted">
-              {product.imageLabel}
+      <Link href={`/shop/${product.slug}`} className="block">
+        <div className="relative aspect-[4/3] overflow-hidden border-b border-border">
+          {product.imageSrc ? (
+            <Image
+              src={product.imageSrc}
+              alt={product.name}
+              fill
+              sizes="(min-width: 1280px) 320px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          ) : (
+            <div className="flex h-full items-end bg-[linear-gradient(145deg,rgba(23,28,25,0.96),rgba(14,17,15,0.98))] p-5">
+              <div className="rounded-2xl border border-dashed border-border bg-background/80 px-4 py-3 font-display text-xs uppercase tracking-[0.22em] text-muted">
+                {product.caliber}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {product.status ? (
-          <div className="absolute left-4 top-4 rounded-full border border-border bg-background/90 px-3 py-1 font-display text-[11px] uppercase tracking-[0.2em] text-text backdrop-blur">
-            {product.status}
+          {!product.inStock && (
+            <div className="absolute left-4 top-4 rounded-full border border-border bg-background/90 px-3 py-1 font-display text-[11px] uppercase tracking-[0.2em] text-muted backdrop-blur">
+              Out of Stock
+            </div>
+          )}
+
+          <div className="absolute right-4 top-4 rounded-full border border-border/60 bg-background/80 px-3 py-1 font-display text-[11px] uppercase tracking-[0.2em] text-primary backdrop-blur">
+            {product.category}
           </div>
-        ) : null}
-      </div>
+        </div>
+      </Link>
 
       <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
-        <div className="space-y-3">
-          <h3 className="text-lg leading-7 text-text">{product.title}</h3>
-          <p className="font-display text-xl uppercase tracking-[0.08em] text-primary">{product.price}</p>
+        <div className="space-y-1">
+          <Link href={`/shop/${product.slug}`} className="block">
+            <h3 className="text-base leading-6 text-text transition-colors hover:text-primary">{product.name}</h3>
+          </Link>
+          <p className="text-sm text-muted">
+            {product.caliber}
+            {product.grain ? ` · ${product.grain}gr` : ""}
+            {" · "}{product.roundCount} ct
+          </p>
         </div>
 
-        <div className="mt-auto space-y-2 text-sm leading-7 text-muted">
-          {product.status ? <p>{`Status: ${product.status}`}</p> : null}
-          {product.tags ? <p>{`Tags: ${product.tags}`}</p> : null}
+        <div className="mt-auto flex items-center justify-between gap-3">
+          <p className="font-display text-xl uppercase tracking-[0.08em] text-primary">
+            ${product.price.toFixed(2)}
+          </p>
+          <AddToCartButton product={product} />
         </div>
-
-        {product.href ? (
-          <div className="inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.24em] text-text">
-            {product.title}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </div>
-        ) : null}
       </div>
     </article>
   );
-
-  if (product.href) {
-    return (
-      <Link href={product.href} className="block h-full">
-        {card}
-      </Link>
-    );
-  }
-
-  return card;
 }
-
