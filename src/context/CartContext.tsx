@@ -3,12 +3,13 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type CartItem = {
-  productId: string;
+  productId: string;   // product.id + variant suffix for uniqueness
   slug: string;
-  name: string;
+  name: string;        // includes variant label e.g. "RBS 9mm 124gr TMJ (250 Count)"
   price: number;
   quantity: number;
   imageSrc: string | null;
+  variantLabel?: string;
 };
 
 type CartContextType = {

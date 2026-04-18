@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { AddToCartButton } from "@/components/add-to-cart-button";
-import type { Product } from "@/lib/products";
+import { formatPriceRange, type Product } from "@/lib/products";
 
 type ProductCardProps = {
   product: Product;
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const hasVariants = !!product.variants && product.variants.length > 1;
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-surface shadow-panel transition-colors hover:border-primary/50 hover:bg-surface-strong">
       <Link href={`/shop/${product.slug}`} className="block">
@@ -49,15 +52,26 @@ export function ProductCard({ product }: ProductCardProps) {
           <p className="text-sm text-muted">
             {product.caliber}
             {product.grain ? ` · ${product.grain}gr` : ""}
-            {" · "}{product.roundCount} ct
+            {" · "}{hasVariants ? "50 / 250 ct" : `${product.roundCount} ct`}
           </p>
         </div>
 
         <div className="mt-auto flex items-center justify-between gap-3">
-          <p className="font-display text-xl uppercase tracking-[0.08em] text-primary">
-            ${product.price.toFixed(2)}
+          <p className="font-display text-xl uppercase tracking-[0.06em] text-primary">
+            {formatPriceRange(product)}
           </p>
-          <AddToCartButton product={product} />
+
+          {hasVariants ? (
+            <Link
+              href={`/shop/${product.slug}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-strong px-4 py-2.5 font-display text-xs uppercase tracking-[0.2em] text-text transition-colors hover:border-primary/50"
+            >
+              Options
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          ) : (
+            <AddToCartButton product={product} />
+          )}
         </div>
       </div>
     </article>

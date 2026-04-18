@@ -12,7 +12,7 @@ const HERO_CARDS = [
     icon: ShieldCheck,
     label: "Pistol Ammo",
     description: "Handgun",
-    href: "/shop?category=Handgun",
+    href: "/shop?category=Pistol",
   },
   {
     icon: Crosshair,

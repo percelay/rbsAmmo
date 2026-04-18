@@ -8,7 +8,8 @@ import { AddToCartButton } from "@/components/add-to-cart-button";
 import { ProductGrid } from "@/components/product-grid";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getAllProducts, getProductBySlug, getProductsByCategory } from "@/lib/products";
+import { VariantSelector } from "@/components/variant-selector";
+import { getAllProducts, getProductBySlug, getProductsByCategory, formatPriceRange } from "@/lib/products";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -119,27 +120,33 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
               {/* Price + CTA */}
               <div className="rounded-[2rem] border border-border bg-surface p-6 shadow-panel sm:p-8">
-                <div className="flex flex-wrap items-end justify-between gap-4">
+                <div className="space-y-5">
                   <div>
                     <p className="font-display text-[10px] uppercase tracking-[0.28em] text-muted">Price</p>
                     <p className="mt-2 font-display text-4xl uppercase tracking-[0.06em] text-primary">
-                      ${product.price.toFixed(2)}
+                      {formatPriceRange(product)}
                     </p>
-                    <p className="mt-1 text-xs text-muted">per {product.roundCount}-round box</p>
+                    {!product.variants && (
+                      <p className="mt-1 text-xs text-muted">per {product.roundCount}-round box</p>
+                    )}
                   </div>
 
-                  <div className="flex flex-wrap gap-3">
-                    <AddToCartButton product={product} />
-                    <Link
-                      href="/cart"
-                      className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-5 py-3 font-display text-xs uppercase tracking-[0.24em] text-text transition-colors hover:border-primary/50 hover:bg-surface-strong sm:text-sm"
-                    >
-                      View Cart
-                    </Link>
-                  </div>
+                  {product.variants ? (
+                    <VariantSelector product={product} />
+                  ) : (
+                    <div className="flex flex-wrap gap-3">
+                      <AddToCartButton product={product} />
+                      <Link
+                        href="/cart"
+                        className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-5 py-3 font-display text-xs uppercase tracking-[0.24em] text-text transition-colors hover:border-primary/50 hover:bg-surface-strong sm:text-sm"
+                      >
+                        View Cart
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
-                <div className="mt-4 rounded-[1.25rem] border border-primary/20 bg-background px-4 py-3 text-xs leading-6 text-muted">
+                <div className="mt-5 rounded-[1.25rem] border border-primary/20 bg-background px-4 py-3 text-xs leading-6 text-muted">
                   You must be 21+ for handgun ammunition and 18+ for rifle ammunition. We do not ship to NJ, CA, IL, or NY.
                 </div>
               </div>

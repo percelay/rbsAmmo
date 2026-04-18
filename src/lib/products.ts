@@ -1,4 +1,10 @@
-export type ProductCategory = "Handgun" | "Rifle" | "Shotgun" | "Rimfire" | "Bullets" | "Brass";
+export type ProductCategory = "Pistol" | "Rifle" | "Shotgun" | "Rimfire" | "Bullets" | "Brass";
+
+export type ProductVariant = {
+  label: string;      // "50 Count" | "250 Count"
+  roundCount: number;
+  price: number;
+};
 
 export type Product = {
   id: string;
@@ -8,8 +14,9 @@ export type Product = {
   caliber: string;
   brand: string;
   grain: number | null;
-  roundCount: number;
-  price: number;
+  roundCount: number;        // base count (50ct when variants exist)
+  price: number;             // base price (lowest when variants exist)
+  variants?: ProductVariant[];
   imageSrc: string | null;
   inStock: boolean;
   category: ProductCategory;
@@ -19,7 +26,7 @@ const RBS_DESC =
   "Proudly manufactured in the USA, our commitment to excellence shines through every round. We exclusively utilize once-fired, brass casings in the production of our ammunition. This ensures reliability and performance you can count on. With meticulous hand-inspection, we uphold the highest standards to deliver a remanufactured product that surpasses expectations. Available for in-store pick-up at Skagit Shooting Range or shipped. Because we care, you can be sure that you are shooting the best ammunition available.";
 
 export const PRODUCTS: Product[] = [
-  // ── HANDGUN AMMO ──────────────────────────────────────────────────────────
+  // ── PISTOL AMMO ───────────────────────────────────────────────────────────
   {
     id: "rbs-9mm-115gr-tmj",
     slug: "rbs-9mm-115gr-tmj",
@@ -29,10 +36,14 @@ export const PRODUCTS: Product[] = [
     brand: "RBS",
     grain: 115,
     roundCount: 50,
-    price: 19.99,
+    price: 14.50,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 14.50 },
+      { label: "250 Count", roundCount: 250, price: 71.25 },
+    ],
     imageSrc: "/products/newbb115.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
   },
   {
     id: "rbs-9mm-124gr-tmj",
@@ -43,10 +54,14 @@ export const PRODUCTS: Product[] = [
     brand: "RBS",
     grain: 124,
     roundCount: 50,
-    price: 20.99,
+    price: 14.99,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 14.99 },
+      { label: "250 Count", roundCount: 250, price: 74.95 },
+    ],
     imageSrc: "/products/9-124-box.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
   },
   {
     id: "rbs-9mm-147gr-subsonic",
@@ -57,10 +72,14 @@ export const PRODUCTS: Product[] = [
     brand: "RBS",
     grain: 147,
     roundCount: 50,
-    price: 21.99,
+    price: 16.99,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 16.99 },
+      { label: "250 Count", roundCount: 250, price: 84.99 },
+    ],
     imageSrc: "/products/newbb147.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
   },
   {
     id: "rbs-9mm-165gr-subsonic",
@@ -71,10 +90,32 @@ export const PRODUCTS: Product[] = [
     brand: "RBS",
     grain: 165,
     roundCount: 50,
-    price: 22.99,
+    price: 18.99,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 18.99 },
+      { label: "250 Count", roundCount: 250, price: 94.95 },
+    ],
     imageSrc: "/products/newbb165.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
+  },
+  {
+    id: "rbs-380-acp",
+    slug: "rbs-380-acp",
+    name: "RBS 380 ACP",
+    description: "RBS .380 ACP 95 grain Total Metal Jacket, Remanufactured. " + RBS_DESC,
+    caliber: ".380 ACP",
+    brand: "RBS",
+    grain: 95,
+    roundCount: 50,
+    price: 17.99,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 17.99 },
+      { label: "250 Count", roundCount: 250, price: 89.95 },
+    ],
+    imageSrc: null,
+    inStock: true,
+    category: "Pistol",
   },
   {
     id: "rbs-38-special-158gr-tmj",
@@ -88,7 +129,7 @@ export const PRODUCTS: Product[] = [
     price: 19.99,
     imageSrc: "/products/newbb38.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
   },
   {
     id: "rbs-357-mag-158gr-tmj",
@@ -102,21 +143,25 @@ export const PRODUCTS: Product[] = [
     price: 22.99,
     imageSrc: "/products/newbb357.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
   },
   {
     id: "rbs-40-sw-180gr-tmj",
     slug: "rbs-40-sw-180gr-tmj",
     name: "RBS 40 S&W 180gr TMJ",
-    description: "40 S&W 180 gr. Total Metal Jacket – 50 count box, Remanufactured. " + RBS_DESC,
+    description: "40 S&W 180 gr. Total Metal Jacket – Remanufactured. " + RBS_DESC,
     caliber: ".40 S&W",
     brand: "RBS",
     grain: 180,
     roundCount: 50,
-    price: 21.99,
+    price: 17.99,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 17.99 },
+      { label: "250 Count", roundCount: 250, price: 89.95 },
+    ],
     imageSrc: "/products/new40.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
   },
   {
     id: "rbs-10mm-180gr-tmj",
@@ -130,7 +175,25 @@ export const PRODUCTS: Product[] = [
     price: 21.99,
     imageSrc: "/products/newbb10.jpg",
     inStock: true,
-    category: "Handgun",
+    category: "Pistol",
+  },
+  {
+    id: "rbs-45-acp",
+    slug: "rbs-45-acp",
+    name: "RBS 45 ACP 230gr TMJ",
+    description: "RBS .45 ACP 230 grain Total Metal Jacket, Remanufactured. " + RBS_DESC,
+    caliber: ".45 ACP",
+    brand: "RBS",
+    grain: 230,
+    roundCount: 50,
+    price: 19.99,
+    variants: [
+      { label: "50 Count", roundCount: 50, price: 19.99 },
+      { label: "250 Count", roundCount: 250, price: 99.95 },
+    ],
+    imageSrc: null,
+    inStock: true,
+    category: "Pistol",
   },
   {
     id: "speer-lawman-45-auto-230gr-tmj",
@@ -142,10 +205,10 @@ export const PRODUCTS: Product[] = [
     brand: "Speer",
     grain: 230,
     roundCount: 50,
-    price: 29.99,
+    price: 17.99,
     imageSrc: "/products/lawman-45.jpg",
-    inStock: true,
-    category: "Handgun",
+    inStock: false,
+    category: "Pistol",
   },
 
   // ── RIFLE AMMO ────────────────────────────────────────────────────────────
@@ -169,7 +232,7 @@ export const PRODUCTS: Product[] = [
     slug: "pmc-x-tac-5-56",
     name: "PMC X-Tac 5.56 NATO",
     description:
-      "The PMC X-TAC line of ammunition is tried and tested by military and law enforcement around the world. Manufactured to the exacting specifications required by such organizations and demanded by discriminating customers. When the chips are down you shouldn't be thinking about your ammunition. In-Store Pickup is all that is available at this time.",
+      "20 Rounds. The PMC X-TAC line is tried and tested by military and law enforcement around the world. Manufactured to the exacting specifications required by such organizations and demanded by discriminating customers. In-Store Pickup is all that is available at this time.",
     caliber: "5.56 NATO",
     brand: "PMC",
     grain: null,
@@ -208,7 +271,7 @@ export const PRODUCTS: Product[] = [
     brand: "Federal",
     grain: null,
     roundCount: 25,
-    price: 9.99,
+    price: 12.99,
     imageSrc: "/products/20-gauge-top-gun.jpg",
     inStock: true,
     category: "Shotgun",
@@ -223,9 +286,9 @@ export const PRODUCTS: Product[] = [
     brand: "Federal",
     grain: null,
     roundCount: 25,
-    price: 9.99,
+    price: 12.99,
     imageSrc: "/products/12-gauge-top-gun.jpg",
-    inStock: true,
+    inStock: false,
     category: "Shotgun",
   },
   {
@@ -233,7 +296,7 @@ export const PRODUCTS: Product[] = [
     slug: "federal-premium-le-12-gauge-hydra-shok",
     name: "Federal Premium LE 12 Gauge Hydra-Shok Slug",
     description:
-      "Federal Premium Law Enforcement 12 Gauge \u2013 438gr Hydra-Shok\u00ae Tactical Rifled Slug. 2 \u00be\u2033 | 1300 FPS | 5 Rounds. Engineered for maximum stopping power, deep penetration, and consistent on-target performance. This LE-grade 12-gauge load features Federal's proven Hydra-Shok\u00ae hollow-point design, paired with a rifled slug for reliable accuracy through smooth-bore barrels.",
+      "Federal Premium Law Enforcement 12 Gauge \u2013 438gr Hydra-Shok\u00ae Tactical Rifled Slug. 2 \u00be\u2033 | 1300 FPS | 5 Rounds. Engineered for maximum stopping power, deep penetration, and consistent on-target performance.",
     caliber: "12 Gauge",
     brand: "Federal",
     grain: 438,
@@ -472,11 +535,11 @@ export function getProductsByCategory(category: ProductCategory): Product[] {
 }
 
 export function getFeaturedProducts(count = 6): Product[] {
-  return PRODUCTS.filter((p) => p.imageSrc !== null).slice(0, count);
+  return PRODUCTS.filter((p) => p.imageSrc !== null && p.category === "Pistol").slice(0, count);
 }
 
 export function getAllCategories(): ProductCategory[] {
-  return ["Handgun", "Rifle", "Shotgun", "Rimfire", "Bullets", "Brass"];
+  return ["Pistol", "Rifle", "Shotgun", "Rimfire", "Bullets", "Brass"];
 }
 
 export function filterProducts(products: Product[], category?: string, sort?: string): Product[] {
@@ -495,4 +558,12 @@ export function filterProducts(products: Product[], category?: string, sort?: st
   }
 
   return result;
+}
+
+export function formatPriceRange(product: Product): string {
+  if (!product.variants || product.variants.length < 2) {
+    return `$${product.price.toFixed(2)}`;
+  }
+  const prices = product.variants.map((v) => v.price);
+  return `$${Math.min(...prices).toFixed(2)} – $${Math.max(...prices).toFixed(2)}`;
 }

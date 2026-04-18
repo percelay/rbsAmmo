@@ -4,26 +4,35 @@ import { useState } from "react";
 import { ShoppingCart, Check } from "lucide-react";
 
 import { useCart } from "@/context/CartContext";
-import type { Product } from "@/lib/products";
+import type { Product, ProductVariant } from "@/lib/products";
 
 type AddToCartButtonProps = {
   product: Product;
+  selectedVariant?: ProductVariant;
   quantity?: number;
   className?: string;
 };
 
-export function AddToCartButton({ product, quantity = 1, className }: AddToCartButtonProps) {
+export function AddToCartButton({ product, selectedVariant, quantity = 1, className }: AddToCartButtonProps) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
 
   function handleClick() {
+    const price = selectedVariant?.price ?? product.price;
+    const variantLabel = selectedVariant?.label;
+    const cartId = variantLabel
+      ? `${product.id}-${variantLabel.toLowerCase().replace(/\s+/g, "-")}`
+      : product.id;
+    const cartName = variantLabel ? `${product.name} (${variantLabel})` : product.name;
+
     addItem(
       {
-        productId: product.id,
+        productId: cartId,
         slug: product.slug,
-        name: product.name,
-        price: product.price,
+        name: cartName,
+        price,
         imageSrc: product.imageSrc,
+        variantLabel,
       },
       quantity,
     );
