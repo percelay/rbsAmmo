@@ -5,7 +5,7 @@ import { ArrowRight, ShieldCheck, Crosshair, Package } from "lucide-react";
 import { ProductGrid } from "@/components/product-grid";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getFeaturedProducts } from "@/lib/products";
+import { getFeaturedProducts } from "@/lib/products-server";
 
 const HERO_CARDS = [
   {
@@ -25,8 +25,10 @@ const HERO_CARDS = [
   },
 ];
 
-export default function HomePage() {
-  const featured = getFeaturedProducts(6);
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const featured = await getFeaturedProducts(6);
 
   return (
     <>

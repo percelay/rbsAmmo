@@ -5,7 +5,8 @@ import { ProductCard } from "@/components/product-card";
 import { ShopFilters } from "@/components/shop-filters";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getAllProducts, filterProducts } from "@/lib/products";
+import { filterProducts } from "@/lib/products";
+import { getAllProducts } from "@/lib/products-server";
 
 type ShopPageProps = {
   searchParams: Promise<{ category?: string; sort?: string }>;
@@ -16,9 +17,11 @@ export const metadata = {
   description: "Browse all RBS Ammunition products — handgun ammo, rifle ammo, shotgun shells, and reloading components.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const { category, sort } = await searchParams;
-  const allProducts = getAllProducts();
+  const allProducts = await getAllProducts();
   const products = filterProducts(allProducts, category, sort);
 
   return (

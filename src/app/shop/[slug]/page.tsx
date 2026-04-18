@@ -9,19 +9,18 @@ import { ProductGrid } from "@/components/product-grid";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { VariantSelector } from "@/components/variant-selector";
-import { getAllProducts, getProductBySlug, getProductsByCategory, formatPriceRange } from "@/lib/products";
+import { formatPriceRange } from "@/lib/products";
+import { getProductBySlug, getProductsByCategory } from "@/lib/products-server";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams() {
-  return getAllProducts().map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) return { title: "RBS Ammunition" };
   return {
     title: `${product.name} | RBS Ammunition`,
@@ -31,11 +30,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) notFound();
 
-  const related = getProductsByCategory(product.category)
+  const related = (await getProductsByCategory(product.storefrontCategory))
     .filter((p) => p.id !== product.id)
     .slice(0, 3);
 
@@ -163,7 +162,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {/* ── RELATED PRODUCTS ─────────────────────────────────────────────── */}
         {related.length > 0 && (
           <ProductGrid
-            title={`More ${product.category} Products`}
+            title={`More ${product.storefrontCategory} Products`}
             products={related}
             eyebrow="RBS Ammunition"
           />
