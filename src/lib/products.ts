@@ -1,4 +1,4 @@
-export type ProductCategory = "Pistol" | "Rifle" | "Shotgun" | "Rimfire" | "Bullets" | "Brass";
+export type ProductCategory = "Pistol" | "Rifle" | "Reloading";
 
 export type ProductVariant = {
   label: string;      // "50 Count" | "250 Count"
@@ -242,8 +242,6 @@ export const PRODUCTS: Product[] = [
     inStock: true,
     category: "Rifle",
   },
-
-  // ── RIMFIRE ───────────────────────────────────────────────────────────────
   {
     id: "cci-mini-mag-22-lr",
     slug: "cci-mini-mag-22-lr",
@@ -257,14 +255,12 @@ export const PRODUCTS: Product[] = [
     price: 10.99,
     imageSrc: "/products/image-full-602020-ba428b5bf57b7298c53723724ded98c4.jpg",
     inStock: true,
-    category: "Rimfire",
+    category: "Rifle",
   },
-
-  // ── SHOTGUN AMMO ──────────────────────────────────────────────────────────
   {
     id: "federal-20-gauge-7-5-shot",
     slug: "federal-20-gauge-7-5-shot",
-    name: "Federal Top Gun 20 Gauge 7 1/2 Shot",
+    name: "Federal 20 Gauge 7 1/2 Shot",
     description:
       "25 Rounds of 20 gauge Federal clay target shotshells. 2-3/4\u2033 7/8oz. 7 1/2 shot. In-Store Pickup is all that is available at this time.",
     caliber: "20 Gauge",
@@ -274,12 +270,12 @@ export const PRODUCTS: Product[] = [
     price: 12.99,
     imageSrc: "/products/20-gauge-top-gun.jpg",
     inStock: true,
-    category: "Shotgun",
+    category: "Rifle",
   },
   {
     id: "federal-12-gauge-8-shot",
     slug: "federal-12-gauge-8-shot",
-    name: "Federal Top Gun 12 Gauge 8 Shot",
+    name: "Federal 12 Gauge 8 Shot",
     description:
       "25 Rounds of Federal 12 gauge clay target shotshells 2-3/4\u2033 1 oz. 8 shot. In-Store Pickup is all that is available at this time.",
     caliber: "12 Gauge",
@@ -289,7 +285,7 @@ export const PRODUCTS: Product[] = [
     price: 12.99,
     imageSrc: "/products/12-gauge-top-gun.jpg",
     inStock: false,
-    category: "Shotgun",
+    category: "Rifle",
   },
   {
     id: "federal-premium-le-12-gauge-hydra-shok",
@@ -304,10 +300,25 @@ export const PRODUCTS: Product[] = [
     price: 18.99,
     imageSrc: "/products/222-scaled-e1763681419216.jpg",
     inStock: true,
-    category: "Shotgun",
+    category: "Rifle",
   },
 
-  // ── BULLETS (Reloading Components) ────────────────────────────────────────
+  // ── RELOADING — BULLETS ───────────────────────────────────────────────────
+  {
+    id: "380-100gr-rnfp-bullets-500ct",
+    slug: "380-100gr-rnfp-bullets-500ct",
+    name: ".380 100gr RNFP Bullets",
+    description:
+      "500 per box. .380 caliber 100 grain round nose flat point bullets for reloading. In-Store Pickup is all that is available at this time.",
+    caliber: ".380",
+    brand: "RBS",
+    grain: 100,
+    roundCount: 500,
+    price: 44.50,
+    imageSrc: null,
+    inStock: true,
+    category: "Reloading",
+  },
   {
     id: "9mm-115gr-rn-bullets-500ct",
     slug: "9mm-115gr-rn-bullets-500ct",
@@ -321,7 +332,7 @@ export const PRODUCTS: Product[] = [
     price: 46.50,
     imageSrc: "/products/9-115-RN.jpg",
     inStock: true,
-    category: "Bullets",
+    category: "Reloading",
   },
   {
     id: "9mm-124gr-rn-bullets-500ct",
@@ -336,7 +347,7 @@ export const PRODUCTS: Product[] = [
     price: 48.50,
     imageSrc: "/products/9-124-box.jpg",
     inStock: true,
-    category: "Bullets",
+    category: "Reloading",
   },
   {
     id: "9mm-147gr-rn-bullets-500ct",
@@ -351,7 +362,7 @@ export const PRODUCTS: Product[] = [
     price: 49.32,
     imageSrc: "/products/newbb147.jpg",
     inStock: true,
-    category: "Bullets",
+    category: "Reloading",
   },
   {
     id: "9mm-165gr-rn-bullets-500ct",
@@ -366,7 +377,7 @@ export const PRODUCTS: Product[] = [
     price: 51.99,
     imageSrc: "/products/9-165-rn-scaled.jpg",
     inStock: true,
-    category: "Bullets",
+    category: "Reloading",
   },
   {
     id: "38-158gr-swc-bullets-500ct",
@@ -381,7 +392,22 @@ export const PRODUCTS: Product[] = [
     price: 59.50,
     imageSrc: "/products/38-158-swc.jpg",
     inStock: true,
-    category: "Bullets",
+    category: "Reloading",
+  },
+  {
+    id: "40-180gr-rnfp-bullets-500ct",
+    slug: "40-180gr-rnfp-bullets-500ct",
+    name: ".40 180gr RNFP Bullets",
+    description:
+      "500 per box. .40 caliber 180 grain round nose flat point bullets for reloading. In-Store Pickup is all that is available at this time.",
+    caliber: ".40",
+    brand: "RBS",
+    grain: 180,
+    roundCount: 500,
+    price: 64.99,
+    imageSrc: null,
+    inStock: true,
+    category: "Reloading",
   },
   {
     id: "45-230gr-rn-bullets-500ct",
@@ -396,10 +422,10 @@ export const PRODUCTS: Product[] = [
     price: 75.00,
     imageSrc: "/products/45-230-scaled.jpg",
     inStock: true,
-    category: "Bullets",
+    category: "Reloading",
   },
 
-  // ── BRASS ─────────────────────────────────────────────────────────────────
+  // ── RELOADING — BRASS ─────────────────────────────────────────────────────
   {
     id: "223-brass-100ct",
     slug: "223-brass-100ct",
@@ -413,7 +439,7 @@ export const PRODUCTS: Product[] = [
     price: 5.99,
     imageSrc: "/products/2.23-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "380-acp-brass-100ct",
@@ -428,7 +454,7 @@ export const PRODUCTS: Product[] = [
     price: 10.99,
     imageSrc: "/products/380-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "9mm-brass-100ct",
@@ -443,7 +469,7 @@ export const PRODUCTS: Product[] = [
     price: 9.99,
     imageSrc: "/products/9mm-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "38-special-brass-100ct",
@@ -458,7 +484,7 @@ export const PRODUCTS: Product[] = [
     price: 7.99,
     imageSrc: "/products/38-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "357-mag-brass-100ct",
@@ -473,7 +499,7 @@ export const PRODUCTS: Product[] = [
     price: 13.99,
     imageSrc: "/products/357-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "40-sw-brass-100ct",
@@ -488,7 +514,7 @@ export const PRODUCTS: Product[] = [
     price: 7.99,
     imageSrc: "/products/40-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "10mm-brass-100ct",
@@ -503,7 +529,7 @@ export const PRODUCTS: Product[] = [
     price: 10.99,
     imageSrc: "/products/10-brass-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
   },
   {
     id: "45-acp-large-hole-brass-100ct",
@@ -518,7 +544,22 @@ export const PRODUCTS: Product[] = [
     price: 11.99,
     imageSrc: "/products/45-brass-LH-Small.jpg",
     inStock: true,
-    category: "Brass",
+    category: "Reloading",
+  },
+  {
+    id: "45-acp-small-hole-brass-100ct",
+    slug: "45-acp-small-hole-brass-100ct",
+    name: "45 ACP Small Hole Brass",
+    description:
+      "100 Count per. Fully processed .45 small hole brass, collected from an indoor range. De-capped, reamed, full-length case sized and polished. READY TO LOAD! In-Store Pickup is all that is available at this time.",
+    caliber: ".45 ACP",
+    brand: "RBS",
+    grain: null,
+    roundCount: 100,
+    price: 11.99,
+    imageSrc: null,
+    inStock: true,
+    category: "Reloading",
   },
 ];
 
@@ -539,7 +580,7 @@ export function getFeaturedProducts(count = 6): Product[] {
 }
 
 export function getAllCategories(): ProductCategory[] {
-  return ["Pistol", "Rifle", "Shotgun", "Rimfire", "Bullets", "Brass"];
+  return ["Pistol", "Rifle", "Reloading"];
 }
 
 export function filterProducts(products: Product[], category?: string, sort?: string): Product[] {
@@ -565,5 +606,5 @@ export function formatPriceRange(product: Product): string {
     return `$${product.price.toFixed(2)}`;
   }
   const prices = product.variants.map((v) => v.price);
-  return `$${Math.min(...prices).toFixed(2)} – $${Math.max(...prices).toFixed(2)}`;
+  return `$${Math.min(...prices).toFixed(2)} \u2013 $${Math.max(...prices).toFixed(2)}`;
 }

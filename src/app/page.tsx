@@ -11,20 +11,17 @@ const HERO_CARDS = [
   {
     icon: ShieldCheck,
     label: "Pistol Ammo",
-    description: "Handgun",
     href: "/shop?category=Pistol",
   },
   {
     icon: Crosshair,
     label: "Rifle Ammo",
-    description: "Rifle",
     href: "/shop?category=Rifle",
   },
   {
     icon: Package,
-    label: "Components",
-    description: "Bullets & Brass",
-    href: "/shop?category=Bullets",
+    label: "Reloading",
+    href: "/shop?category=Reloading",
   },
 ];
 
@@ -87,7 +84,7 @@ export default function HomePage() {
               </div>
 
               <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                {HERO_CARDS.map(({ icon: Icon, label, href }) => (
+                {HERO_CARDS.map(({ icon: Icon, label, href }: { icon: typeof ShieldCheck; label: string; href: string }) => (
                   <Link
                     key={href}
                     href={href}
