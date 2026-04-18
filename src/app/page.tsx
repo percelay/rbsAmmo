@@ -34,24 +34,11 @@ export default function HomePage() {
 
       <main>
         {/* ── HERO ─────────────────────────────────────────────────────────── */}
-        <section className="relative isolate overflow-hidden border-b border-border">
-          <div className="absolute inset-0">
-            <Image
-              src="/ammohero.jpg"
-              alt="RBS Ammunition"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(9,11,10,0.92),rgba(9,11,10,0.55),rgba(9,11,10,0.94))]" />
-            <div className="absolute inset-y-0 right-0 hidden w-2/5 bg-[radial-gradient(circle_at_top,rgba(184,138,59,0.28),transparent_55%)] lg:block" />
-          </div>
-
-          <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,420px)] lg:px-8 lg:py-24">
+        <section className="border-b border-border bg-background">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,420px)] lg:px-8 lg:py-24">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-background/60 px-4 py-2 shadow-panel backdrop-blur">
-                <div className="relative h-8 w-8 overflow-hidden rounded-full border border-border/80 bg-background">
+              <div className="inline-flex items-center gap-3 rounded-full border border-primary/40 bg-surface px-4 py-2 shadow-panel">
+                <div className="relative h-8 w-8 overflow-hidden rounded-full border border-border bg-background">
                   <Image src="/rbs-logo-full-min.webp" alt="RBS Ammunition" fill className="object-contain p-1" />
                 </div>
                 <span className="font-display text-xs uppercase tracking-[0.32em] text-muted">RBS Ammunition</span>
@@ -70,14 +57,14 @@ export default function HomePage() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary px-6 py-3 font-display text-sm uppercase tracking-[0.2em] text-background shadow-panel transition-colors hover:bg-primary-strong"
+                  className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary px-6 py-3 font-display text-sm uppercase tracking-[0.2em] text-white shadow-panel transition-colors hover:bg-primary-strong"
                 >
                   Shop All Ammo
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 px-6 py-3 font-display text-sm uppercase tracking-[0.2em] text-text backdrop-blur transition-colors hover:border-primary/40 hover:bg-surface-strong"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 font-display text-sm uppercase tracking-[0.2em] text-text transition-colors hover:border-primary/40 hover:bg-surface-strong"
                 >
                   About Us
                 </Link>
@@ -88,7 +75,7 @@ export default function HomePage() {
                   <Link
                     key={href}
                     href={href}
-                    className="group flex h-full flex-col justify-between rounded-3xl border border-border bg-surface/85 p-5 shadow-panel backdrop-blur transition-colors hover:border-primary/60 hover:bg-surface-strong"
+                    className="group flex h-full flex-col justify-between rounded-3xl border border-border bg-surface p-5 shadow-panel transition-colors hover:border-primary/50 hover:bg-surface-strong"
                   >
                     <Icon className="h-5 w-5 text-primary" />
                     <div className="mt-8 space-y-2">
@@ -103,26 +90,16 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Featured image card */}
-            <div className="rounded-[2rem] border border-border bg-background/75 p-6 shadow-panel backdrop-blur sm:p-8">
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-border bg-surface p-6">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(123,138,87,0.22),transparent_48%),radial-gradient(circle_at_bottom_right,rgba(184,138,59,0.18),transparent_55%)]" />
-                <div className="relative space-y-4">
-                  <p className="font-display text-xs uppercase tracking-[0.28em] text-primary">RBS Ammunition</p>
-                  <p className="text-sm leading-7 text-muted">
-                    Once-fired brass casings. Hand-inspected. Built to perform when it matters most.
-                  </p>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] border border-border">
-                    <Image
-                      src="/products/9-124-box.jpg"
-                      alt="RBS 9mm 124gr TMJ"
-                      fill
-                      sizes="420px"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
+            {/* American flag */}
+            <div className="relative hidden min-h-[420px] overflow-hidden rounded-[2rem] border border-border shadow-panel lg:block">
+              <Image
+                src="/americanflag22.webp"
+                alt="American flag"
+                fill
+                priority
+                sizes="420px"
+                className="object-cover"
+              />
             </div>
           </div>
         </section>
@@ -157,7 +134,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(11,15,13,0.7),transparent_60%)]" />
                 <div className="absolute bottom-6 left-6 space-y-1">
                   <p className="font-display text-xs uppercase tracking-[0.28em] text-primary">Our Sponsored Shooter</p>
-                  <p className="font-display text-sm uppercase tracking-[0.16em] text-text">
+                  <p className="font-display text-sm uppercase tracking-[0.16em] text-white">
                     2017 IPSC World Champion — Revolver Division
                   </p>
                 </div>
