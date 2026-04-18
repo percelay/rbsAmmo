@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const { user, response } = await updateSession(request);
+  const { user, isAdmin, response } = await updateSession(request);
   const isLoginRoute = pathname === "/admin/login";
 
   if (!user && !isLoginRoute) {
@@ -20,11 +20,18 @@ export async function middleware(request: NextRequest) {
     return copyResponseCookies(response, NextResponse.redirect(loginUrl));
   }
 
-  if (user && isLoginRoute) {
+  if (user && isAdmin && isLoginRoute) {
     const adminUrl = request.nextUrl.clone();
     adminUrl.pathname = "/admin";
     adminUrl.search = "";
     return copyResponseCookies(response, NextResponse.redirect(adminUrl));
+  }
+
+  if (user && !isAdmin && !isLoginRoute) {
+    const loginUrl = request.nextUrl.clone();
+    loginUrl.pathname = "/admin/login";
+    loginUrl.searchParams.set("error", "unauthorized");
+    return copyResponseCookies(response, NextResponse.redirect(loginUrl));
   }
 
   return response;

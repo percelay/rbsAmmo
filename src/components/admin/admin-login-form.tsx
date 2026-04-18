@@ -7,10 +7,11 @@ import { AdminSubmitButton } from "@/components/admin/admin-submit-button";
 
 type AdminLoginFormProps = {
   nextPath: string;
+  initialError?: string | null;
 };
 
-export function AdminLoginForm({ nextPath }: AdminLoginFormProps) {
-  const [state, formAction] = useActionState(loginAction, { error: null });
+export function AdminLoginForm({ nextPath, initialError = null }: AdminLoginFormProps) {
+  const [state, formAction] = useActionState(loginAction, { error: initialError });
 
   return (
     <form action={formAction} className="space-y-5">

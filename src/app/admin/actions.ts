@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+import { isAdminEmail } from "@/lib/admin-auth";
 import { ORDER_STATUS_OPTIONS, PRODUCT_CATEGORY_OPTIONS } from "@/lib/products";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 
@@ -98,6 +99,19 @@ export async function loginAction(
     };
   }
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const isAdmin = await isAdminEmail(supabase, user?.email);
+
+  if (!user || !isAdmin) {
+    await supabase.auth.signOut();
+    return {
+      error: "This account is not authorized for admin access.",
+    };
+  }
+
   redirect(nextPath);
 }
 
@@ -160,10 +174,6 @@ export async function saveProductAction(
 
   if (stockQuantity !== null && (!Number.isFinite(stockQuantity) || stockQuantity < 0)) {
     fieldErrors.stockQuantity = "Stock quantity must be a whole number of 0 or greater.";
-  }
-
-  if (inStock && (stockQuantity ?? 0) <= 0) {
-    fieldErrors.stockQuantity = "Stock quantity must be greater than 0 when the product is marked in stock.";
   }
 
   if (Object.keys(fieldErrors).length > 0) {

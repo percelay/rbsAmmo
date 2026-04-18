@@ -144,7 +144,7 @@ export function getStorefrontCategory(category: string | null | undefined): Stor
 export function mapProductRow(row: ProductRow): Product {
   const category = normalizeProductCategory(row.category);
   const stockQuantity = row.stock_quantity ?? 0;
-  const inStock = Boolean(row.in_stock ?? true) && stockQuantity > 0;
+  const inStock = Boolean(row.in_stock ?? true);
 
   return {
     id: row.id,

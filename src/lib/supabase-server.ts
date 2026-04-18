@@ -1,5 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
+import type { User } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
+
+import { isAdminEmail } from "@/lib/admin-auth";
 
 function getSupabaseEnv() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -41,4 +44,29 @@ export async function getAuthenticatedUser() {
   } = await supabase.auth.getUser();
 
   return user;
+}
+
+export async function getAuthenticatedAdminState(): Promise<{
+  supabase: Awaited<ReturnType<typeof createServerSupabaseClient>>;
+  user: User | null;
+  isAdmin: boolean;
+}> {
+  const supabase = await createServerSupabaseClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return {
+      supabase,
+      user: null,
+      isAdmin: false,
+    };
+  }
+
+  return {
+    supabase,
+    user,
+    isAdmin: await isAdminEmail(supabase, user.email),
+  };
 }

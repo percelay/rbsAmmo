@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
 
 import { AdminLoginForm } from "@/components/admin/admin-login-form";
-import { getAuthenticatedUser } from "@/lib/supabase-server";
+import { getAuthenticatedAdminState } from "@/lib/supabase-server";
 
 type AdminLoginPageProps = {
-  searchParams: Promise<{ next?: string }>;
+  searchParams: Promise<{ next?: string; error?: string }>;
 };
 
 export const metadata = {
@@ -12,14 +12,16 @@ export const metadata = {
 };
 
 export default async function AdminLoginPage({ searchParams }: AdminLoginPageProps) {
-  const user = await getAuthenticatedUser();
+  const { user, isAdmin } = await getAuthenticatedAdminState();
 
-  if (user) {
+  if (user && isAdmin) {
     redirect("/admin");
   }
 
-  const { next } = await searchParams;
+  const { next, error } = await searchParams;
   const nextPath = next?.startsWith("/admin") ? next : "/admin";
+  const initialError =
+    error === "unauthorized" ? "That account is signed in, but it is not on the admin allowlist." : null;
 
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(226,232,240,0.9),transparent_45%),linear-gradient(180deg,#f8fafc_0%,#e2e8f0_100%)] px-4 py-12 sm:px-6 lg:px-8">
@@ -51,7 +53,7 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
           </div>
 
           <div className="mt-8">
-            <AdminLoginForm nextPath={nextPath} />
+            <AdminLoginForm nextPath={nextPath} initialError={initialError} />
           </div>
         </section>
       </div>

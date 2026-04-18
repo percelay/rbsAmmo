@@ -13,7 +13,7 @@ import {
   type ProductRow,
 } from "@/lib/products";
 import { PRODUCT_COLUMNS } from "@/lib/products-server";
-import { createServerSupabaseClient } from "@/lib/supabase-server";
+import { getAuthenticatedAdminState } from "@/lib/supabase-server";
 
 export const ORDER_COLUMNS = `
   id,
@@ -61,13 +61,10 @@ function sanitizeSearchTerm(value: string | undefined) {
 }
 
 export async function requireAdminSession() {
-  const supabase = await createServerSupabaseClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const { supabase, user, isAdmin } = await getAuthenticatedAdminState();
 
-  if (!user) {
-    redirect("/admin/login");
+  if (!user || !isAdmin) {
+    redirect("/admin/login?error=unauthorized");
   }
 
   return { supabase, user };
@@ -114,7 +111,7 @@ export async function getDashboardData(): Promise<QueryState<DashboardData>> {
 
   const inventorySummary = products.reduce(
     (summary, product) => {
-      const isAvailable = Boolean(product.in_stock) && Number(product.stock_quantity ?? 0) > 0;
+      const isAvailable = Boolean(product.in_stock);
 
       if (isAvailable) {
         summary.inStockProducts += 1;

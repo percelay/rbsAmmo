@@ -1,6 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest, type NextResponse as NextMiddlewareResponse } from "next/server";
 
+import { isAdminEmail } from "@/lib/admin-auth";
+
 function getSupabaseEnv() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -42,7 +44,9 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  return { user, response };
+  const isAdmin = user ? await isAdminEmail(supabase, user.email) : false;
+
+  return { user, isAdmin, response };
 }
 
 export function copyResponseCookies(source: NextMiddlewareResponse, target: NextMiddlewareResponse) {

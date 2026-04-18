@@ -53,6 +53,7 @@ This file is for coding agents working in `rbsAmmo`.
 
 - Base schema is [supabase/migrations/001_initial_schema.sql](supabase/migrations/001_initial_schema.sql).
 - Admin product policies plus storage bucket setup are in [supabase/migrations/002_admin_product_policies_and_storage.sql](supabase/migrations/002_admin_product_policies_and_storage.sql).
+- Admin allowlist hardening is in [supabase/migrations/003_lock_admin_access.sql](supabase/migrations/003_lock_admin_access.sql).
 - The storefront source of truth is now Supabase `products`, not a hardcoded catalog array.
 
 ## Important Frontend Components

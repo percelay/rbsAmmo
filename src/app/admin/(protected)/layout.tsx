@@ -3,13 +3,13 @@ import { redirect } from "next/navigation";
 
 import { logoutAction } from "@/app/admin/actions";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
-import { getAuthenticatedUser } from "@/lib/supabase-server";
+import { getAuthenticatedAdminState } from "@/lib/supabase-server";
 
 export default async function ProtectedAdminLayout({ children }: { children: React.ReactNode }) {
-  const user = await getAuthenticatedUser();
+  const { user, isAdmin } = await getAuthenticatedAdminState();
 
-  if (!user) {
-    redirect("/admin/login");
+  if (!user || !isAdmin) {
+    redirect("/admin/login?error=unauthorized");
   }
 
   return (
