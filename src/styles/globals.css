@@ -26,6 +26,13 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 17px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 body {
@@ -34,6 +41,8 @@ body {
   background: #ffffff;
   color: var(--color-text);
   font-family: var(--font-barlow), sans-serif;
+  font-weight: 500;
+  line-height: 1.65;
 }
 
 a,

@@ -89,7 +89,7 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 
 (gen_random_uuid(), '9mm 124gr Round Nose Bullets', '9mm-124gr-rn-bullets-500ct',
  '500 per box. 9mm 124 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
- '9mm', 'RBS', 124, 500, 48.50, '/products/9-124-box.jpg', TRUE, 'Reloading'),
+ '9mm', 'RBS', 124, 500, 48.50, '/newphotos/stockbullets3.png', TRUE, 'Reloading'),
 
 (gen_random_uuid(), '9mm 147gr Round Nose Bullets', '9mm-147gr-rn-bullets-500ct',
  '500 per box. 9mm 147 grain round nose bullets for reloading. In-Store Pickup is all that is available at this time.',
@@ -147,3 +147,16 @@ INSERT INTO products (id, name, slug, description, caliber, brand, grain, round_
 (gen_random_uuid(), '45 ACP Small Hole Brass', '45-acp-small-hole-brass-100ct',
  '100 Count per. Fully processed .45 small hole brass. De-capped, reamed, full-length case sized and polished. READY TO LOAD! In-Store Pickup is all that is available at this time.',
  '.45 ACP', 'RBS', NULL, 100, 11.99, '/products/45-sh-Small.webp', TRUE, 'Reloading');
+
+-- ── PISTOL SORT ORDER (per Misti's spec) ───────────────────────────────────
+UPDATE products SET sort_order = 10  WHERE slug = 'rbs-380-acp';
+UPDATE products SET sort_order = 20  WHERE slug = 'rbs-9mm-115gr-tmj';
+UPDATE products SET sort_order = 30  WHERE slug = 'rbs-9mm-124gr-tmj';
+UPDATE products SET sort_order = 40  WHERE slug = 'rbs-9mm-147gr-subsonic';
+UPDATE products SET sort_order = 50  WHERE slug = 'rbs-9mm-165gr-subsonic';
+UPDATE products SET sort_order = 60  WHERE slug = 'rbs-38-special-158gr-tmj';
+UPDATE products SET sort_order = 70  WHERE slug = 'rbs-357-mag-158gr-tmj';
+UPDATE products SET sort_order = 80  WHERE slug = 'rbs-40-sw-180gr-tmj';
+UPDATE products SET sort_order = 90  WHERE slug = 'rbs-10mm-180gr-tmj';
+UPDATE products SET sort_order = 100 WHERE slug = 'rbs-45-acp';
+UPDATE products SET sort_order = 999 WHERE slug = 'speer-lawman-45-auto-230gr-tmj';

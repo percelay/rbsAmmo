@@ -9,7 +9,7 @@ import { filterProducts } from "@/lib/products";
 import { getAllProducts } from "@/lib/products-server";
 
 type ShopPageProps = {
-  searchParams: Promise<{ category?: string; sort?: string }>;
+  searchParams: Promise<{ category?: string; sort?: string; roundCount?: string }>;
 };
 
 export const metadata = {
@@ -20,9 +20,9 @@ export const metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
-  const { category, sort } = await searchParams;
+  const { category, sort, roundCount } = await searchParams;
   const allProducts = await getAllProducts();
-  const products = filterProducts(allProducts, category, sort);
+  const products = filterProducts(allProducts, category, sort, roundCount);
 
   return (
     <>
@@ -40,15 +40,26 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               sizes="100vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(9,11,10,0.92),rgba(9,11,10,0.72),rgba(9,11,10,0.9))]" />
+            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(0,0,0,0.88),rgba(0,0,0,0.7)_45%,rgba(0,0,0,0.92))]" />
           </div>
 
-          <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8">
-            <p className="font-display text-xs uppercase tracking-[0.32em] text-primary">RBS Ammunition</p>
-            <h1 className="mt-4 font-display text-4xl uppercase tracking-[0.1em] text-text sm:text-5xl">
+          <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+            <p
+              className="font-display text-base font-bold uppercase tracking-[0.4em] text-white"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7)" }}
+            >
+              RBS Ammunition
+            </p>
+            <h1
+              className="mt-5 font-display text-5xl font-bold uppercase tracking-[0.08em] text-white sm:text-6xl lg:text-7xl"
+              style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7), 0 1px 0 rgba(0,0,0,0.6)" }}
+            >
               {category && category !== "All" ? category : "All Products"}
             </h1>
-            <p className="mt-3 text-muted">
+            <p
+              className="mt-4 text-lg font-semibold text-white/95"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.7)" }}
+            >
               {products.length} product{products.length !== 1 ? "s" : ""}
             </p>
           </div>
