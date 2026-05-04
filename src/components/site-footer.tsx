@@ -27,7 +27,7 @@ export function SiteFooter() {
           </div>
           <p className="max-w-md text-sm leading-7 text-muted">
             High-quality ammunition built in Skagit Valley, WA. Proudly serving shooters, competitors,
-            and law enforcement since day one.
+            and law enforcement since 2012.
           </p>
           <div className="space-y-1 text-sm text-muted">
             <p>1309 Bouslog Road Suite 108</p>

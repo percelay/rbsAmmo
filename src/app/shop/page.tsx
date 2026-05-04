@@ -9,7 +9,7 @@ import { filterProducts } from "@/lib/products";
 import { getAllProducts } from "@/lib/products-server";
 
 type ShopPageProps = {
-  searchParams: Promise<{ category?: string; sort?: string; roundCount?: string }>;
+  searchParams: Promise<{ category?: string; sort?: string }>;
 };
 
 export const metadata = {
@@ -20,9 +20,9 @@ export const metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function ShopPage({ searchParams }: ShopPageProps) {
-  const { category, sort, roundCount } = await searchParams;
+  const { category, sort } = await searchParams;
   const allProducts = await getAllProducts();
-  const products = filterProducts(allProducts, category, sort, roundCount);
+  const products = filterProducts(allProducts, category, sort);
 
   return (
     <>
