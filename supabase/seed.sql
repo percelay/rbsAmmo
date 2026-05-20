@@ -160,3 +160,34 @@ UPDATE products SET sort_order = 80  WHERE slug = 'rbs-40-sw-180gr-tmj';
 UPDATE products SET sort_order = 90  WHERE slug = 'rbs-10mm-180gr-tmj';
 UPDATE products SET sort_order = 100 WHERE slug = 'rbs-45-acp';
 UPDATE products SET sort_order = 999 WHERE slug = 'speer-lawman-45-auto-230gr-tmj';
+
+-- ── BOX COUNT OPTIONS: 50ct Boxes + 250ct Sport Packs ─────────────────────
+-- These are variants on the parent product, not standalone storefront products.
+INSERT INTO product_variants
+  (product_id, label, round_count, price, sku, in_stock, stock_quantity, sort_order)
+SELECT
+  p.id,
+  v.label,
+  v.round_count,
+  v.price::numeric(10,2),
+  'RBS-' || v.sku_suffix,
+  TRUE,
+  0,
+  v.sort_order
+FROM (VALUES
+  ('rbs-9mm-115gr-tmj',      '50ct Box',          50,  14.50, '9-115-50',   10),
+  ('rbs-9mm-115gr-tmj',      '250ct Sport Pack', 250, 71.25, '9-115-250',  20),
+  ('rbs-9mm-124gr-tmj',      '50ct Box',          50,  14.99, '9-124-50',   10),
+  ('rbs-9mm-124gr-tmj',      '250ct Sport Pack', 250, 74.95, '9-124-250',  20),
+  ('rbs-9mm-147gr-subsonic', '50ct Box',          50,  16.99, '9-147-50',   10),
+  ('rbs-9mm-147gr-subsonic', '250ct Sport Pack', 250, 84.99, '9-147-250',  20),
+  ('rbs-9mm-165gr-subsonic', '50ct Box',          50,  18.99, '9-165-50',   10),
+  ('rbs-9mm-165gr-subsonic', '250ct Sport Pack', 250, 94.95, '9-165-250',  20),
+  ('rbs-380-acp',            '50ct Box',          50,  17.99, '380-50',     10),
+  ('rbs-380-acp',            '250ct Sport Pack', 250, 89.95, '380-250',    20),
+  ('rbs-40-sw-180gr-tmj',    '50ct Box',          50,  17.99, '40-50',      10),
+  ('rbs-40-sw-180gr-tmj',    '250ct Sport Pack', 250, 89.95, '40-250',     20),
+  ('rbs-45-acp',             '50ct Box',          50,  19.99, '45-50',      10),
+  ('rbs-45-acp',             '250ct Sport Pack', 250, 99.95, '45-250',     20)
+) AS v(slug, label, round_count, price, sku_suffix, sort_order)
+JOIN products p ON p.slug = v.slug;
