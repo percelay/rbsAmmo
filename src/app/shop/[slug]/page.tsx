@@ -9,7 +9,7 @@ import { ProductGrid } from "@/components/product-grid";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { VariantSelector } from "@/components/variant-selector";
-import { formatPriceRange } from "@/lib/products";
+import { formatPriceRange, formatRoundCountOptions } from "@/lib/products";
 import { getProductBySlug, getProductsByCategory } from "@/lib/products-server";
 
 type ProductPageProps = {
@@ -109,7 +109,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 )}
                 <div className="rounded-[1.5rem] border border-border bg-surface p-4 shadow-panel">
                   <p className="font-display text-[10px] uppercase tracking-[0.28em] text-muted">Count</p>
-                  <p className="mt-2 text-sm text-text">{product.roundCount} rounds</p>
+                  <p className="mt-2 text-sm text-text">{formatRoundCountOptions(product)}</p>
                 </div>
                 <div className="rounded-[1.5rem] border border-border bg-surface p-4 shadow-panel">
                   <p className="font-display text-[10px] uppercase tracking-[0.28em] text-muted">Brand</p>

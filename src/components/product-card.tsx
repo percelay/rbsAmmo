@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { AddToCartButton } from "@/components/add-to-cart-button";
-import { formatPriceRange, type Product } from "@/lib/products";
+import { formatPriceRange, formatRoundCountOptions, type Product } from "@/lib/products";
 
 type ProductCardProps = {
   product: Product;
@@ -52,7 +52,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <p className="text-sm text-muted">
             {product.caliber}
             {product.grain ? ` · ${product.grain}gr` : ""}
-            {" · "}{hasVariants ? "50 / 250 ct" : `${product.roundCount} ct`}
+            {" · "}{formatRoundCountOptions(product)}
           </p>
         </div>
 

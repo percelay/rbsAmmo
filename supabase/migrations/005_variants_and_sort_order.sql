@@ -14,7 +14,7 @@ CREATE INDEX IF NOT EXISTS products_sort_order_idx
 CREATE TABLE IF NOT EXISTS product_variants (
   id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   product_id      UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-  label           TEXT NOT NULL,            -- "50ct Box", "250ct Sports Pack"
+  label           TEXT NOT NULL,            -- "50ct Box", "250ct Sport Pack"
   round_count     INTEGER NOT NULL,
   sku             TEXT UNIQUE,
   price           NUMERIC(10,2) NOT NULL,

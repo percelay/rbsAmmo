@@ -40,7 +40,7 @@ export function AddToCartButton({ product, selectedVariant, quantity = 1, classN
     setTimeout(() => setAdded(false), 1800);
   }
 
-  if (!product.inStock) {
+  if (!product.inStock || selectedVariant?.inStock === false) {
     return (
       <button
         disabled

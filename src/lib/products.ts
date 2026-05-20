@@ -284,6 +284,16 @@ export function formatPriceRange(product: Product): string {
   return `${formatCurrency(min)} – ${formatCurrency(max)}`;
 }
 
+export function formatRoundCountOptions(product: Product): string {
+  if (!product.variants || product.variants.length === 0) {
+    return `${product.roundCount} ct`;
+  }
+
+  return product.variants
+    .map((variant) => (variant.roundCount === 250 ? "250ct Sport Pack" : `${variant.roundCount}ct Box`))
+    .join(" / ");
+}
+
 export function formatCurrency(value: number | string | null | undefined) {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
