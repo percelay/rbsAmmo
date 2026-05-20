@@ -180,6 +180,55 @@ export function mapProductVariantRow(row: ProductVariantRow): ProductVariant {
   };
 }
 
+const SPORT_PACK_VARIANTS_BY_SLUG: Record<string, { price: number; skuSuffix: string }[]> = {
+  "rbs-9mm-115gr-tmj": [
+    { price: 14.50, skuSuffix: "9-115-50" },
+    { price: 71.25, skuSuffix: "9-115-250" },
+  ],
+  "rbs-9mm-124gr-tmj": [
+    { price: 14.99, skuSuffix: "9-124-50" },
+    { price: 74.95, skuSuffix: "9-124-250" },
+  ],
+  "rbs-9mm-147gr-subsonic": [
+    { price: 16.99, skuSuffix: "9-147-50" },
+    { price: 84.99, skuSuffix: "9-147-250" },
+  ],
+  "rbs-9mm-165gr-subsonic": [
+    { price: 18.99, skuSuffix: "9-165-50" },
+    { price: 94.95, skuSuffix: "9-165-250" },
+  ],
+  "rbs-380-acp": [
+    { price: 17.99, skuSuffix: "380-50" },
+    { price: 89.95, skuSuffix: "380-250" },
+  ],
+  "rbs-40-sw-180gr-tmj": [
+    { price: 17.99, skuSuffix: "40-50" },
+    { price: 89.95, skuSuffix: "40-250" },
+  ],
+  "rbs-45-acp": [
+    { price: 19.99, skuSuffix: "45-50" },
+    { price: 99.95, skuSuffix: "45-250" },
+  ],
+};
+
+function getFallbackSportPackVariants(row: ProductRow): ProductVariant[] | undefined {
+  const sportPackVariants = SPORT_PACK_VARIANTS_BY_SLUG[row.slug];
+  if (!sportPackVariants) return undefined;
+
+  return sportPackVariants.map((variant, index) => {
+    const roundCount = index === 0 ? 50 : 250;
+    return {
+      id: `${row.id}-${roundCount}`,
+      label: roundCount === 250 ? "250ct Sport Pack" : "50ct Box",
+      roundCount,
+      price: variant.price,
+      sku: `RBS-${variant.skuSuffix}`,
+      inStock: Boolean(row.in_stock ?? true),
+      stockQuantity: row.stock_quantity ?? 0,
+    };
+  });
+}
+
 export function mapProductRow(row: ProductRow, variantRows?: ProductVariantRow[]): Product {
   const category = normalizeProductCategory(row.category);
   const stockQuantity = row.stock_quantity ?? 0;
@@ -195,7 +244,7 @@ export function mapProductRow(row: ProductRow, variantRows?: ProductVariantRow[]
           return a.round_count - b.round_count;
         })
         .map(mapProductVariantRow)
-    : undefined;
+    : getFallbackSportPackVariants(row);
 
   return {
     id: row.id,

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 import { AddToCartButton } from "@/components/add-to-cart-button";
+import { VariantSelector } from "@/components/variant-selector";
 import { formatPriceRange, formatRoundCountOptions, type Product } from "@/lib/products";
 
 type ProductCardProps = {
@@ -56,22 +56,18 @@ export function ProductCard({ product }: ProductCardProps) {
           </p>
         </div>
 
-        <div className="mt-auto flex items-center justify-between gap-3">
+        <div className="mt-auto space-y-3">
+          {hasVariants && <VariantSelector product={product} compact />}
+
+          <div className="flex items-center justify-between gap-3">
           <p className="font-display text-xl uppercase tracking-[0.06em] text-primary">
             {formatPriceRange(product)}
           </p>
 
-          {hasVariants ? (
-            <Link
-              href={`/shop/${product.slug}`}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-strong px-4 py-2.5 font-display text-xs uppercase tracking-[0.2em] text-text transition-colors hover:border-primary/50"
-            >
-              Options
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          ) : (
+          {!hasVariants && (
             <AddToCartButton product={product} />
           )}
+          </div>
         </div>
       </div>
     </article>
